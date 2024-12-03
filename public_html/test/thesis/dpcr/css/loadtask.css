@@ -1,0 +1,40 @@
+.button-container {
+    position: sticky; /* Sticky navbar */
+    top: 0; /* Stick to the top of the viewport */
+    display: flex;
+    justify-content: space-around; /* Adjust alignment as needed */
+    padding: 5px; /* Adjust padding as needed */
+    gap: 10px; /* Adjust gap between buttons as needed */
+    border: 1px solid #ccc; /* Optional: Add border for visualization */
+    background: #f9f9f9;
+}
+
+.button {
+    padding: 10px 20px;
+    width: 100%;
+    background-color:#5c5c8a;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
+}
+
+
+.button:hover {
+    background-color: #33334d;
+}
+
+.taskcontent {
+    overflow-y: auto;
+    height: 500px; /* set a fixed height */
+    padding-left: 20px;
+    padding-right: 20px;;
+    background-color: #f9f9f9; /* Light background color for contrast */
+    border: 1px solid #ddd; /* Light border for distinction */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  

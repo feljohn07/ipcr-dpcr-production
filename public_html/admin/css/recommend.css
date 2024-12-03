@@ -1,0 +1,62 @@
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    max-width: 100%;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+}
+
+.recommendingapp-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.recommendingapp-form img {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures the image covers the icon area without distortion */
+    border-radius: 50%; /* Optional: makes the image round if it’s square */
+    margin-right: 10px; /* Space between the image and the input field */
+}
+
+.recommendingapp-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.recommendingapp-form label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+.Btn {
+    text-align: right;
+    margin-top: 10px;
+}
+.Btn button {
+    padding: 10px 20px;
+    background-color: #4749f3; /* Adjust the color as needed */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Btn button:hover {
+    background-color: #392585; /* Adjust the hover color as needed */
+}
+
+.recommendingapp-form input[type="text"] {
+    text-align: center;
+    width: 100%; /* Optional: Makes the input field take the full width of its container */
+    font-size: 20px;
+}

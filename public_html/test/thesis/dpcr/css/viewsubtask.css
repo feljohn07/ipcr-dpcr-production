@@ -1,0 +1,148 @@
+    /* Include the updated CSS styles here */
+        /* Basic reset for consistency */
+        body, h2, p, button, form {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        
+        /* Grid layout for tasks */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .task-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .task-box h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .task-details, .button-container-wrapper {
+            border-top: 1px solid #ccc; /* Border to separate sections */
+            padding-top: 10px; /* Padding to create space from the border */
+            margin-top: 10px; /* Margin to create space from the previous section */
+        }
+        
+        .task-details p {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .task-details .pending {
+            color: #f39c12; /* Orange */
+        }
+        
+        .task-details .approve {
+            color: #27ae60; /* Green */
+        }
+        
+        .task-details .disapprove {
+            color: #e74c3c; /* Red */
+        }
+        
+        .task-details .comment-btn {
+            cursor: pointer;
+            color: #3498db; /* Blue */
+            text-decoration: underline;
+        }
+        
+        .task-details .comment-btn:hover {
+            color: #2980b9;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Set width for the modal */
+            max-width: 600px; /* Maximum width */
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+            word-wrap: break-word; /* Handle long words */
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Button styling */
+        button {
+            background-color: #ddd; /* Light grey background */
+            color: black; /* Black text */
+            border: 1px solid #ccc; /* Light grey border */
+            padding: 8px 12px; /* Smaller padding */
+            border-radius: 3px; /* Slightly rounded corners */
+            cursor: pointer;
+            margin: 5px;
+            font-size: 10px; /* Smaller font size */
+        }
+        
+        button:hover {
+            background-color: #ccc; /* Darker grey on hover */
+        }
+        
+        /* Flex container for buttons */
+        .button-container {
+            display: flex;
+            justify-content: flex-start; /* Align buttons to the left */
+            gap: 10px; /* Space between buttons */
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .task-box {
+                margin: 10px;
+                padding: 10px;
+            }
+        
+            .task-box h3 {
+                font-size: 16px;
+            }
+        
+            .task-details p {
+                font-size: 12px;
+            }
+        }

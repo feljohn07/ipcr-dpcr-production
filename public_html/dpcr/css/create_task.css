@@ -1,0 +1,102 @@
+
+fieldset {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+legend {
+    background-color: #efefef;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px; /* Compact padding */
+    margin-bottom: 5px; /* Compact margin */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+}
+
+.task label {
+    margin-right: 2px; /* Reduced space between labels and inputs */
+    flex-basis: 10%;
+    font-size: 14px; /* Compact font size */
+    text-align: right; /* Align label text to the right to make it close to the input */
+}
+
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+    padding: 5px; /* Reduced padding inside the input fields */
+    margin-right: 5px; /* Reduced spacing between inputs */
+    border: 1px solid #ccc;
+}
+
+input[type="text"] {
+    width: 150px; /* Narrower width for input fields */
+}
+
+textarea {
+    width: 200px; /* Smaller width for the textarea */
+    resize: vertical;
+}
+
+input[type="number"] {
+    width: 60px; /* Narrower width for the number input */
+}
+
+button {
+    padding: 8px 15px; /* Smaller button size */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Reduced font size for a smaller button */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.remove-task {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Reduced padding for the remove button */
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-task:hover {
+    background-color: #cc0000;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-container button {
+    margin-left: 5px; /* Reduced space between button and input */
+}
+
+.task input,
+.task textarea {
+    flex-grow: 1;
+    margin-left: 5px; /* Smaller spacing between inputs */
+}
+
+#strategic_tasks,
+#core_tasks,
+#support_tasks {
+    margin-bottom: 10px; /* Reduced space between fieldsets */
+}

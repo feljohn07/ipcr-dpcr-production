@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General body and container styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    
+        /* Profile form and inputs styling */
+        .profile-info {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .profile-info h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        .profile-info .form-group {
+            display: flex;  /* Use flexbox for better alignment */
+            justify-content: flex-start;  /* Align items to the start */
+            margin-bottom: 10px;
+            width: 100%;
+            align-items: center;  /* Ensures vertical alignment */
+        }
+    
+        .profile-info .form-group label {
+            width: 25%;  /* Reduced label width */
+            font-weight: bold;
+            font-size: 12px; /* Smaller font size for labels */
+            margin-bottom: 0;  /* Remove the bottom margin */
+            margin-right: 10px;  /* Small space between label and input */
+            text-align: right; /* Align labels to the right */
+        }
+    
+        .profile-info .form-group input,
+        .profile-info .form-group select {
+            width: 70%;  /* Adjust input width */
+            padding: 6px;  /* Reduced padding */
+            font-size: 12px; /* Smaller font size for inputs */
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    
+        .profile-info .form-group input[type="file"] {
+            padding: 0;
+        }
+    
+        /* Styling for profile picture */
+        .profile-picture {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    
+        .profile-picture img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 0%;
+            border: 4px solid #ddd;
+        }
+    
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;  /* Adjusted font size for the button */
+        }
+    
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    
+        /* Profile picture section */
+        .profile-picture {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            margin-top: -20px; /* Moves the profile picture up */
+        }
+    
+        .profile-picture img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 0%;
+            border: 4px solid #ddd;
+        }
+    
+        .profile-picture p {
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+    
+    
+    
+</head>
+<body>
+
+<div class="container">
+    <!-- Profile Info Form -->
+    <div class="profile-info">
+        <h2>Profile Information</h2>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture" onclick="document.getElementById('profile_picture_input').click();">
+            <?php if ($picture): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($picture); ?>" alt="Profile Picture" id="profile_picture_img">
+            <?php else: ?>
+                <p>No picture uploaded yet.</p>
+            <?php endif; ?>
+            <input type="file" id="profile_picture_input" name="profile_picture" style="display: none;" accept="image/*" onchange="previewImage(event)">
+            
+        </div>
+        <div class="dropdown">
+            <button class="settings-button" type="button" onclick="toggleDropdown()">⚙️</button>
+            <div class="dropdown-content" id="dropdownMenu">
+                <button onclick="location.href='../forall/change_password.php';">Edit</button>
+                <button onclick="location.href='../forall/change_password.php';">Change Password</button>
+            </div>
+            <script>
+                function toggleDropdown() {
+                        document.getElementById("dropdownMenu").classList.toggle("show");
+                    }
+
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function(event) {
+                        if (!event.target.matches('.settings-button')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            for (var i = 0; i < dropdowns.length; i++) {
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')) {
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
+            </script>
+            <style>
+            /* Basic styling for the dropdown container */
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                /* Style for the settings button */
+                .settings-button {
+                    padding: 10px 15px;
+                    background-color: transparent; /* Transparent background */
+                    color: white; /* White text */
+                    border: none; /* No border */
+                    border-radius: 5px; /* Rounded corners */
+                    cursor: pointer; /* Pointer cursor on hover */
+                    font-size: 20px; /* Font size */
+                }
+
+                /* Dropdown content (hidden by default) */
+                .dropdown-content {
+                    display: none; /* Hidden by default */
+                    position: absolute; /* Position it below the button */
+                    background-color: white; /* White background */
+                    min-width: 160px; /* Minimum width */
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+                    z-index: 1; /* Ensure it appears above other content */
+                }
+
+                /* Style for dropdown buttons */
+                .dropdown-content button {
+                    color: black; /* Text color */
+                    padding: 12px 16px; /* Padding */
+                    text-decoration: none; /* No underline */
+                    display: block; /* Block display for full width */
+                    border: none; /* No border */
+                    background: none; /* No background */
+                    width: 100%; /* Full width */
+                    text-align: left; /* Align text to the left */
+                    cursor: pointer; /* Pointer cursor on hover */
+                }
+
+                /* Change color on hover */
+                .dropdown-content button:hover {
+                    background-color: #f1f1f1; /* Light gray background on hover */
+                }
+
+                /* Show the dropdown menu when toggled */
+                .dropdown-content.show {
+                    display: block; /* Show the dropdown */
+                }
+            </style>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="prefix">ID Number</label>
+                <input type="text" name="idnumber" id="idnumber" placeholder="ID Number" value="<?php echo $idnumber; ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="prefix">Prefix</label>
+                <select name="prefix" id="prefix" disabled>
+                    <option value="" disabled <?php echo $prefix == '' ? 'selected' : ''; ?>>Select Prefix</option>
+                    <option value="Dr." <?php echo $prefix == 'Dr.' ? 'selected' : ''; ?>>Dr.</option>
+                    <option value="Prof." <?php echo $prefix == 'Prof.' ? 'selected' : ''; ?>>Prof.</option>
+                    <option value="Rev." <?php echo $prefix == 'Rev.' ? 'selected' : ''; ?>>Rev.</option>
+                    <option value= "None" <?php echo $prefix == 'None' ? 'selected' : ''; ?>>None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Last Name" value="<?php echo $lastname; ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" value="<?php echo $lastname; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="middlename">Middle Initial</label>
+                <input type="text" name="middlename" id="middlename" placeholder="Middle Initial" value="<?php echo $middlename; ?>" maxlength="2" pattern="[A-Z]\." title="Please enter a single capital letter followed by a period" readonly>
+                <script>
+                    document.getElementById('middlename').addEventListener('input', function(event) {
+                        // Get the current value of the input
+                        let value = this.value.toUpperCase(); // Convert to uppercase
+    
+                        // If the value is a single letter, append a period
+                        if (value.length === 1 && /^[A-Z]$/.test(value)) {
+                            this.value = value + '.'; // Append the period
+                        }
+    
+                        // If the value is more than 2 characters, truncate it
+                        if (value.length > 2) {
+                            this.value = value.slice(0, 2); // Keep only the first two characters
+                        }
+                    });
+    
+                    // Handle backspace to remove both letter and period
+                    document.getElementById('middlename').addEventListener('keydown', function(event) {
+                        // Check if the backspace key was pressed
+                        if (event.key === 'Backspace') {
+                            // Get the current value of the input
+                            let value = this.value;
+    
+                            // If there's a letter and a period, remove both
+                            if (value.length === 2 && value.charAt(1) === '.') {
+                                this.value = ''; // Clear the input
+                                event.preventDefault(); // Prevent default backspace action
+                            }
+                        }
+                    });
+                    </script>
+            </div>
+            <div class="form-group">
+                <label for="suffix">Suffix</label>
+                <input type="text" name="suffix" id="suffix" placeholder="Suffix" value="<?php echo $suffix; ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="gmail">Email</label>
+                <input type="email" id="gmail" name="gmail" value="<?php echo $gmail; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="Male" <?php echo ($gender === 'Male' ? 'selected' : ''); ?>>Male</option>
+                    <option value="Female" <?php echo ($gender === 'Female' ? 'selected' : ''); ?>>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="college">College</label>
+                <input type="text" name="college" id="college" placeholder="College" value="<?php echo $college; ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" id="designation" name="designation" value="<?php echo $designation; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Academic Rank</label>
+                <select name="position" id="position" disabled>
+                    <option value="" class="parent-option" disabled style="background-color: #d3d3d3;" <?php echo $position == '' ? 'selected' : ''; ?>>Select Position</option>
+                    <option value="" class="parent-option" disabled>Instructors to Assistant Professor</option>
+                    <option value="instructor-1" class="instructors-option" <?php echo $position == 'instructor-1' ? 'selected' : ''; ?>>Instructor 1</option>
+                    <option value="instructor-2" class="instructors-option" <?php echo $position == 'instructor-2' ? 'selected' : ''; ?>>Instructor 2</option>
+                    <option value="instructor-3" class="instructors-option" <?php echo $position == 'instructor-3' ? 'selected' : ''; ?>>Instructor 3</option>
+                    <option value="assistant-professor-1" class="instructors-option" <?php echo $position == 'assistant-professor-1' ? 'selected' : ''; ?>>Assistant Professor 1</option>
+                    <option value="assistant-professor-2" class="instructors-option" <?php echo $position == 'assistant-professor-2' ? 'selected' : ''; ?>>Assistant Professor 2</option>
+                    <option value="assistant-professor-3" class="instructors-option" <?php echo $position == 'assistant-professor-3' ? 'selected' : ''; ?>>Assistant Professor 3</option>
+                    <option value="assistant-professor-4" class="instructors-option" <?php echo $position == 'assistant-professor-4' ? 'selected' : ''; ?>>Assistant Professor 4</option>
+                    <option value="" class="parent-option" disabled>Associate Professor to Professors</option>
+                    <option value="associate-professor-1" class="professors-option" <?php echo $position == 'associate-professor-1' ? 'selected' : ''; ?>>Associate Professor 1</option>
+                    <option value="associate-professor-2" class="professors-option" <?php echo $position == 'associate-professor-2' ? 'selected' : ''; ?>>Associate Professor 2</option>
+                    <option value="associate-professor-3" class="professors-option" <?php echo $position == 'associate-professor-3' ? 'selected' : ''; ?>>Associate Professor 3</option>
+                    <option value="associate-professor-4" class="professors-option" <?php echo $position == 'associate-professor-4' ? 'selected' : ''; ?>>Associate Professor 4</option>
+                    <option value="professor-1" class="professors-option" <?php echo $position == 'professor-1' ? 'selected' : ''; ?>>Professor 1</option>
+                    <option value="professor-2" class="professors-option" <?php echo $position == 'professor-2' ? 'selected' : ''; ?>>Professor 2</option>
+                    <option value="professor-3" class="professors-option" <?php echo $position == 'professor-3' ? 'selected' : ''; ?>>Professor 3</option>
+                    <option value="professor-4" class="professors-option" <?php echo $position == 'professor-4' ? 'selected' : ''; ?>>Professor 4</option>
+                    <option value="professor-5" class="professors-option" <?php echo $position == 'professor-5' ? 'selected' : ''; ?>>Professor 5</option>
+                    <option value="professor-6" class="professors-option" <?php echo $position == 'professor-6' ? 'selected' : ''; ?>>Professor 6</option>
+                    <option value="university-professor-1" class="professors-option" <?php echo $position == 'university-professor-1' ? 'selected' : ''; ?>>University Professor 1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="role">role</label>
+                <input type="text" name="role" id="role" placeholder="Role" value="<?php echo $role; ?>" readonly>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+  function previewImage(event) {
+    const file = event.target.files[0];
+    
+    if (file) {
+        // Check if the file is an image
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profile_picture_img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file.");
+            // Clear the file input so no invalid file is selected
+            document.getElementById('profile_picture_input').value = '';
+        }
+    }
+}
+</script>    
+
+</body>
+</html>

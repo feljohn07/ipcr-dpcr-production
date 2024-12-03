@@ -1,0 +1,83 @@
+.registration-form {
+    width: 90%; /* Make the form full width */
+    margin: 0 auto; /* Center the form */
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.registration-form .form-group {
+    margin-bottom: 15px;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    color: #333;
+}
+
+.registration-form input,
+.registration-form select,
+.registration-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.registration-form button {
+    background-color: #2FA42F;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.registration-form button:hover {
+    background-color: #1A811A;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Optional responsive adjustments */
+@media (max-width: 600px) {
+    .registration-form {
+        padding: 15px; /* Optional: Reduce padding for smaller screens */
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-row .form-group {
+        margin-right: 0;
+    }
+}

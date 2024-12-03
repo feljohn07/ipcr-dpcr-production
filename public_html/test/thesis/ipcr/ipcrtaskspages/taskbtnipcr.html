@@ -1,0 +1,93 @@
+<!-- taskContent.html -->
+<style>
+    .button-container {
+        position: sticky; /* Sticky navbar */
+        top: 0; /* Stick to the top of the viewport */
+        display: flex;
+        justify-content: space-around; /* Adjust alignment as needed */
+        padding: 5px; /* Adjust padding as needed */
+        gap: 10px; /* Adjust gap between buttons as needed */
+        border: 1px solid #ccc; /* Optional: Add border for visualization */
+        background: #f9f9f9;
+    }
+    
+    .button {
+        padding: 10px 20px;
+        width: 100%;
+        background-color: #5c5c8a;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: background-color 0.2s ease;
+    }
+    
+    .button:hover {
+        background-color: #33334d;
+    }
+    
+    .taskcontent {
+        overflow-y: auto;
+        height: 500px; /* set a fixed height */
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #f9f9f9; /* Light background color for contrast */
+        border: 1px solid #ddd; /* Light border for distinction */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    .button:hover {
+        background-color: #33334d;
+    }
+    
+    /* Style for the active button */
+    .button.active {
+        background-color: #33334d; /* Same color as hover */
+    }
+</style>
+
+<div class="button-container">
+    <a href="#" onclick="loadTaskContent('ipcrtaskspages/ipcrtask.php', this)" class="button button-2">Assigned Task</a>
+    <a href="#" onclick="loadTaskContent('ipcrtaskspages/create_task_ipcr.php', this)" class="button button-4">Create Task</a>
+    <a href="#" onclick="loadTaskContent('ipcrtaskspages/approvedtask.php', this)" class="button button-3">My Approved Tasks</a>
+    <a href="#" onclick="loadTaskContent('ipcrtaskspages/viewcreated_task.php', this)" class="button button-5">My Created Tasks</a>
+</div>
+
+<div class="taskcontent" id="taskContent">
+    <!-- Content will be loaded dynamically here -->    
+</div>
+
+<script>
+    function loadTaskContent(url, buttonElement) {
+        $('#taskContent').load(url, function() {
+            // Store the URL in localStorage
+            localStorage.setItem('taskContentURL', url);
+    
+            // Remove 'active' class from all buttons
+            $('.button').removeClass('active');
+    
+            // Add 'active' class to the clicked button
+            if (buttonElement) {
+                $(buttonElement).addClass('active');
+            }
+        });
+    }
+    
+    // Load the stored task content if available
+    $(document).ready(function() {
+        var taskContentURL = localStorage.getItem('taskContentURL');
+        console.log("Stored task content URL:", taskContentURL); // Debugging line
+    
+        if (taskContentURL) {
+            // Load the stored content
+            loadTaskContent(taskContentURL, $('.button.active')[0]);
+        } else {
+            // Default content to show if no previous content is stored
+            loadTaskContent('ipcrtaskspages/ipcrtask.php'); // Default content
+        }
+    });
+    
+</script>
+

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Exported Document</title><style>.container { width: 80%; margin: 0 auto; text-align: center; margin-top: 40px; margin-bottom: 20px; }h1 { text-align: center; text-transform: uppercase; font-size: 18px; margin-bottom: 20px; }p { font-size: 14px; line-height: 1.6; text-align: justify; margin-bottom: 5px; }.signatures { margin-top: 5px; display: flex; justify-content: flex-end; margin-right: 80px; }.ratee { text-align: center; margin-left: auto; }.review-table { width: 100%; border-collapse: collapse; margin-top: 20px; }.review-table, .review-table th, .review-table td { border: 1px solid black; }.review-table th, .review-table td { padding: 10px; }.review-table td { font-size: 14px; }.highlighted { font-size: 17px; }.no-border { border: none; }.section-title { text-align: left; padding-left: 10px; }.center-text { text-align: center; }.comment-box { padding: 20px; text-align: left; }.underline { border-bottom: 1px solid black; display: inline-block; padding-bottom: 1px; }@media print { html, body { margin: 0; padding: 0; width: auto; overflow: visible; }.container { width: 100%; margin: 0; box-sizing: border-box; }@page { size: landscape; margin: 1in; }.print-container { display: none; }button { display: none; }.no-signature { display: none; }.review-table td { padding: 0; }.review-table td[colspan="2"] { text-align: center; vertical-align: top; padding: 0; height: 10px; }.for-signature { padding: 0; height: 90px; width: 190px; overflow: hidden; border-bottom: none; }.for-signature p { text-align: center; }.for-signature span { font-size: 8px; text-align: left; margin: 0; padding: 0; letter-spacing: -0.5px; }</style></head><body> 
+        <h1 style="padding-top: 0;">INDIVIDUAL PERFORMANCE COMMITMENT AND REVIEW (IPCR)</h1>
+        <p>
+            I, <span style="text-decoration: underline; line-height: 1.2; font-weight: bold;">QUICERBEN O. CEZAR</span> of the 
+            <span style="text-decoration: underline; line-height: 1.2; font-weight: bold;">COLLEGE OF ARTS AND SCIENCES</span>
+            commit to deliver and agree to be rated on the attainment of the following targets 
+            in accordance with the indicated measures for the period 
+            <strong style="text-decoration: underline; line-height: 1.2; font-weight: bold;">1st Semester of AY 2024 - 2025</strong>
+        </p>
+        <div class="signatures">
+            <div class="ratee">
+                <p>
+                    <span style="text-decoration: underline; line-height: 2; font-weight: bold;">
+                        <strong>Quicerben O. Cezar</strong>
+                    </span><br>
+                    <span style="display: block; text-align: center;">Ratee</span>
+                </p>
+                <p>Date : <span class="underline" style="margin-left: 5px; line-height: 0.8;">November 4, 2024</span></p>
+            </div>
+        </div>
+        <div class="row header" style="width: 100%; text-align: center; font-size: 13px;">
+            </div><table class="review-table">
+            <tbody><tr>
+                <th rowspan="2" style="font-weight: normal;">Outputs</th>
+                <th rowspan="2" style="font-weight: normal;">Success Indicator<br> (Target + Measures)</th>
+                <th rowspan="2" style="font-weight: normal;">Actual Accomplishment</th>
+                <th colspan="4" class="center-text" style="font-weight: normal;">Rating</th>
+                <th rowspan="2" style="font-weight: normal;">Remarks</th>
+            </tr>
+            <tr>
+                <th class="center-text" style="font-weight: normal;">Q</th>
+                <th class="center-text" style="font-weight: normal;">E</th>
+                <th class="center-text" style="font-weight: normal;">T</th>
+                <th class="center-text" style="font-weight: normal;">A</th>
+            </tr>
+            
+            </tbody><tbody>
+                                    <tr>
+                        <td class="section-title" colspan="8" style="padding: 0;">Strategic Priority (20%)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0;">Output I Learning and Development</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                                            <tr>
+                            <td>test2 </td>
+                            <td style="text-align: left;">ssadadsdsa</td>
+                            <td>
+                                0% of the target for test2  has been accomplished.                            </td>
+                            <td>4.5</td>
+                            <td>0.0</td>
+                            <td>0.0</td>
+                            <td>0.0</td>
+                            <td></td>
+                        </tr>
+                                        <!-- Loop through assigned strategic tasks -->
+                                            <tr>
+                            <td>hays</td>
+                            <td style="text-align: left;">sdadas</td>
+                            <td>
+                                100% of the target for hays has been accomplished.                            </td>
+                            <td>0.0</td>
+                            <td>0.0</td>
+                            <td>0.0</td>
+                            <td>0.0</td>
+                        </tr>
+                                        <!-- Calculate combined average sub-total -->
+                    <tr>
+                        <td colspan="6" style="text-align: right;"><span>Average Sub-total</span></td>
+                        <td>
+                            0                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align: right;"><span>Weighted Average (Average Sub-total * Strategic %)</span></td>
+                        <td>
+                            0                        </td>
+                        <td></td>
+                    </tr>
+                                <!-- Core Tasks -->
+                <tr>
+                    <td class="section-title" colspan="8" style="padding: 0;">Core Priority (70%)</td>
+                </tr>
+                <!-- Loop through fetched core tasks -->
+                                    <tr>
+                        <td>sadasdsad</td>
+                        <td style="text-align: left;">asasdads</td>
+                        <td>
+                            0% of the target for sadasdsad has been accomplished.                        </td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td></td>
+                    </tr>
+                                <!-- Loop through assigned core tasks -->
+                                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Average Sub-total</span></td>
+                    <td>
+                        0                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Weighted Average (Average Sub-total * Core %)</span></td>
+                    <td>
+                        0                    </td>
+                    <td></td>
+                </tr>
+                <!-- Support Tasks -->
+                <tr>
+                    <td class="section-title" colspan="8" style="padding: 0;">Support Priority (10%)</td>
+                </tr>
+                                    <tr>
+                        <td>ssdadsasda</td>
+                        <td style="text-align: left;">asda'sd</td>
+                        <td>
+                            0% of the target for ssdadsasda has been accomplished.                        </td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td>0.0</td>
+                        <td></td>
+                    </tr>
+                                <!-- Loop through assigned support tasks -->
+                                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Average Sub-total</span></td>
+                    <td>
+                        0                    </td>
+                    <td></td>
+                </tr>
+                <!-- Weighted Average for support tasks -->
+                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Weighted Average (Average Sub-total * Support %)</span></td>
+                    <td>
+                        0                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Final Average Rating (Strategic % + Core % + Support %)</span></td>
+                    <td>
+                        0.0                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: right;"><span>Final Average Rating (O, VS, S, US, OR P)</span></td>
+                    <td>
+                        P                    </td>
+                    <td></td>
+                </tr>
+                <tr><td colspan="8" style="text-align: left; vertical-align: top; padding: 0; height: 100px;">
+    <p style="margin: 0 0 0 20px;"><span>Comments and Recommendations for Development Purposes :</span></p>
+    <p style="margin: 0 0 0 20px;">(Includes behavioral competencies)</p>
+    <p style="margin: 0 0 0 20px;">asdasad</p>
+</td>
+            </tr></tbody>
+        </table>
+    
+        <table class="review-table">
+            <tbody><tr>
+                <td colspan="2" style="text-align: center; vertical-align: top; padding: 0; height:10px;">Discussed with</td>
+                <td colspan="4" style="text-align: center; vertical-align: top; padding: 0; height: 10px;">Assessed by</td>
+                <td colspan="2" style="text-align: center; vertical-align: top; padding: 0; height: 10px;">Final Rating by</td>
+            </tr>
+            <tr>
+            <td class="for-signature" style="padding: 0; height: 90px; width: 190px; overflow: hidden; border-bottom: none;">
+                                            <img style="width: 90px; height: 70px;">
+                                    </td>
+                <td rowspan="3" style="text-align: left; vertical-align: top;">Date</td>
+                <td class="for-signature" style="padding: 0; height: 90px; width: 190px; overflow: hidden; border-bottom: none;">
+                                            <img style="width: 90px; height: 70px;">
+                                    </td>
+                <td rowspan="3" style="text-align: left; vertical-align: top;">Date</td>
+                <td class="for-signature" style="padding: 0; height: 90px; width: 190px; overflow: hidden; border-bottom: none; vertical-align: top;">
+                    <p style="font-size: 8px; text-align: left; margin: 0; padding: 0; letter-spacing: -0.5px;">I certify that I discussed my assessment of the performance with the employee</p>
+                                            <p class="no-signature" style="text-align: center; margin: 0; padding: 0;">No signature yet</p>
+                                    </td>
+                <td rowspan="3" style="text-align: left; vertical-align: top;">Date</td>
+                <td class="for-signature" style="padding: 0; height: 90px; width: 190px; overflow: hidden; border-bottom: none;">
+                                            <p style="text-align: center;">No signature yet</p>
+                                    </td>
+                <td rowspan="3" style="text-align: left; vertical-align: top;">Date</td>
+            </tr>
+            <tr>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">
+                <span>Quicerben O. Cezar</span>
+            </td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">
+                <span>Ronalyn L. Goyossss</span>
+            </td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">
+                <span>Carmelo S. Llanto</span>
+            </td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">
+                <span>Joy C. Capistrano</span>
+            </td>
+            </tr>
+            <tr>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">Ratee</td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">Immediate Supervisor</td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">VP for Academic Affairs and Quality Assurance</td>
+            <td style="border-top: none; border-left: 1px solid black; border-right: 1px solid black; padding: 0;">College President</td>
+            </tr>
+        </tbody></table>
+        <p style="font-style: italic; font-size: 8px;">Legend 1 - Quality 2 - Efficiency 3 - Timeliness 4 - Average</p>
+    </body></htm

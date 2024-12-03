@@ -1,0 +1,6 @@
+{
+    "require": {
+        "clicksend/clicksend-php": "*",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
