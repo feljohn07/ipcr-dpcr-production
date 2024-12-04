@@ -40,7 +40,7 @@ if (isset($_POST['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three Div Layout</title>
+    <title>IPCR Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../ipcr/css/allcss.css">
     <style>
@@ -187,7 +187,7 @@ html, body {
 </head>
 
 <body>
-<div class="header">IPCR Dash</div>
+<div class="header">IPCR Dashboard</div>
 <div class="navbar">
     <button onclick="loadContent('../forall/profile.php')" class="nav-link">
         <img src="../iconswhite/profile.svg" alt="Profile icon">
@@ -225,6 +225,11 @@ html, body {
         <img src="../iconswhite/notification.svg" alt="Reports Icon">
         Reports
     </button>
+    <button onclick="window.location.href='../feature_experiment/reports/personel_performance_report.php?id=<?php echo $_SESSION['idnumber']?>';" class="nav-link">
+        <img src="../iconswhite/notification.svg" alt="Reports Icon">
+        Reports
+    </button>
+
     <form method="post" id="logoutForm">
         <button type="button" onclick="showLogoutModal()" class="nav-link">
             <img src="../iconswhite/logout.svg" alt="Logout Icon">

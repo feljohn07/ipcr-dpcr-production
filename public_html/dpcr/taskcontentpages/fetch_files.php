@@ -7,6 +7,8 @@ $task_id = $_POST['task_id'];
 $owner_id = $_POST['owner_id'];
 $semester_id = $_POST['semester_id']; // Get semester_id
 $task_type = $_POST['task_type']; // Get task_type
+$task_name = $_POST['task_name']; // Get task_type
+$task_description = $_POST['task_description']; // Get task_type
 
 // Prepare a statement to fetch file names from task_attachments
 $fileQuery = "
@@ -171,13 +173,26 @@ function editQuality(button) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
             const response = JSON.parse(xhr.responseText);
+
+            // Rex send email
+            // Using the fetch API to call PHP script
+            fetch('../../feature_experiment/notify_users/includes/send_email_async.php', {
+                method: 'POST', // or 'POST' if you're sending data
+                body: JSON.stringify({ message: response.message, user_id: "<?php echo htmlspecialchars($owner_id); ?>" }),
+            }) 
+            .then(response => response.text())
+            .then(data => { 
+                console.log(data);
+            })
+
             if (!response.success) {
                 alert("Error updating quality: " + response.error);
             }
         }
     };
-    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&quality=" + encodeURIComponent(newQuality));
+    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&task_name=<?php echo htmlspecialchars($task_name); ?>&task_description=<?php echo htmlspecialchars($task_description); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&quality=" + encodeURIComponent(newQuality));
 }
 
 function editEfficiency(button) {
@@ -213,13 +228,26 @@ function editEfficiency(button) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
             const response = JSON.parse(xhr.responseText);
+
+            // Rex send email
+            // Using the fetch API to call PHP script
+            fetch('../../feature_experiment/notify_users/includes/send_email_async.php', {
+                method: 'POST', // or 'POST' if you're sending data
+                body: JSON.stringify({ message: response.message, user_id: "<?php echo htmlspecialchars($owner_id); ?>" }),
+            }) 
+            .then(response => response.text())
+            .then(data => { 
+                console.log(data);
+            })
+
             if (!response.success) {
                 alert("Error updating efficiency: " + response.error);
             }
         }
     };
-    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&efficiency=" + encodeURIComponent(newEfficiency));
+    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&task_name=<?php echo htmlspecialchars($task_name); ?>&task_description=<?php echo htmlspecialchars($task_description); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&efficiency=" + encodeURIComponent(newEfficiency));
 }
 
 function editTimeliness(button) {
@@ -254,13 +282,26 @@ function editTimeliness(button) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
             const response = JSON.parse(xhr.responseText);
+
+            // Rex send email
+            // Using the fetch API to call PHP script
+            fetch('../../feature_experiment/notify_users/includes/send_email_async.php', {
+                method: 'POST', // or 'POST' if you're sending data
+                body: JSON.stringify({ message: response.message, user_id: "<?php echo htmlspecialchars($owner_id); ?>" }),
+            }) 
+            .then(response => response.text())
+            .then(data => { 
+                console.log(data);
+            })
+
             if (!response.success) {
                 alert("Error updating timeliness: " + response.error);
             }
         }
     };
-    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&timeliness=" + encodeURIComponent(newTimeliness));
+    xhr.send("task_id=<?php echo htmlspecialchars($task_id); ?>&task_name=<?php echo htmlspecialchars($task_name); ?>&task_description=<?php echo htmlspecialchars($task_description); ?>&owner_id=<?php echo htmlspecialchars($owner_id); ?>&semester_id=<?php echo htmlspecialchars($semester_id); ?>&task_type=<?php echo htmlspecialchars($task_type); ?>&timeliness=" + encodeURIComponent(newTimeliness));
 }
 
 function editDeansMessage(button) {
@@ -278,7 +319,20 @@ function editDeansMessage(button) {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
                 const response = JSON.parse(xhr.responseText);
+
+                // Rex send email
+                // Using the fetch API to call PHP script
+                fetch('../../feature_experiment/notify_users/includes/send_email_async.php', {
+                    method: 'POST', // or 'POST' if you're sending data
+                    body: JSON.stringify({ message: response.message, user_id: "<?php echo htmlspecialchars($owner_id); ?>" }),
+                }) 
+                .then(response => response.text())
+                .then(data => { 
+                    console.log(data);
+                })
+                
                 if (!response.success) {
                     alert("Error updating Dean's message: " + response.error);
                 }

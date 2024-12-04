@@ -1,4 +1,4 @@
-    <?php
+<?php
     session_start();
     include '../../../dbconnections/config.php';
 
@@ -73,48 +73,50 @@
         }
     }
 
-// Function to get task names and their corresponding final ratings count
-function getSemesterRatings($college, $conn) {
-    $ratingsCount = [];
 
-    // Query to get semester names and their corresponding semester IDs
-    $taskNamesQuery = "SELECT semester_id, semester_name FROM semester_tasks WHERE college = ?";
-    $stmt = $conn->prepare($taskNamesQuery);
-    $stmt->bind_param("s", $college);
-    $stmt->execute();
-    $taskNamesResult = $stmt->get_result();
 
-    if ($taskNamesResult && $taskNamesResult->num_rows > 0) {
-        while ($row = $taskNamesResult->fetch_assoc()) {
-            $semesterId = $row['semester_id'];
-            $semesterName = $row['semester_name'];
+// // Function to get task names and their corresponding final ratings count
+// function getSemesterRatings($college, $conn) {
+//     $ratingsCount = [];
 
-            // Count the occurrences of final_rating for this semester_id
-            $ratingCountQuery = "SELECT final_rating, COUNT(*) as count FROM ipcr_performance_rating WHERE semester_id = ? GROUP BY final_rating";
-            $ratingStmt = $conn->prepare($ratingCountQuery);
-            $ratingStmt->bind_param("s", $semesterId);
-            $ratingStmt->execute();
-            $ratingResult = $ratingStmt->get_result();
+//     // Query to get semester names and their corresponding semester IDs
+//     $taskNamesQuery = "SELECT semester_id, semester_name FROM semester_tasks WHERE college = ?";
+//     $stmt = $conn->prepare($taskNamesQuery);
+//     $stmt->bind_param("s", $college);
+//     $stmt->execute();
+//     $taskNamesResult = $stmt->get_result();
 
-            // Initialize an array to hold counts for this semester
-            $ratingsCount[$semesterName] = [
-                'O' => 0,
-                'VS' => 0,
-                'S' => 0,
-                'P' => 0,
-                'U' => 0,
-                'P' => 0
-            ];
+//     if ($taskNamesResult && $taskNamesResult->num_rows > 0) {
+//         while ($row = $taskNamesResult->fetch_assoc()) {
+//             $semesterId = $row['semester_id'];
+//             $semesterName = $row['semester_name'];
 
-            // Populate the counts based on the final_rating values
-            while ($ratingRow = $ratingResult->fetch_assoc()) {
-                $ratingsCount[$semesterName][$ratingRow['final_rating']] = $ratingRow['count'];
-            }
-        }
-    }
+//             // Count the occurrences of final_rating for this semester_id
+//             $ratingCountQuery = "SELECT final_rating, COUNT(*) as count FROM ipcr_performance_rating WHERE semester_id = ? GROUP BY final_rating";
+//             $ratingStmt = $conn->prepare($ratingCountQuery);
+//             $ratingStmt->bind_param("s", $semesterId);
+//             $ratingStmt->execute();
+//             $ratingResult = $ratingStmt->get_result();
 
-    return $ratingsCount;
-}
+//             // Initialize an array to hold counts for this semester
+//             $ratingsCount[$semesterName] = [
+//                 'O' => 0,
+//                 'VS' => 0,
+//                 'S' => 0,
+//                 'P' => 0,
+//                 'U' => 0,
+//                 'P' => 0
+//             ];
+
+//             // Populate the counts based on the final_rating values
+//             while ($ratingRow = $ratingResult->fetch_assoc()) {
+//                 $ratingsCount[$semesterName][$ratingRow['final_rating']] = $ratingRow['count'];
+//             }
+//         }
+//     }
+
+//     return $ratingsCount;
+// }
 
 /*
 // Call the function and get the ratings count
@@ -361,4 +363,8 @@ if (!empty($data)) {
 } else {
     echo '<p>No data available.</p>';
 }
+
+// include '../../../feature_experiment/oustanding_personels/college_general_report.php';
 ?>
+
+

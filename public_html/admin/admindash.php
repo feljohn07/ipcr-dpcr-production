@@ -41,7 +41,7 @@ if (isset($_POST['logout'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="header">My Web Base System</div>
+    <div class="header">Admin Dashboard</div>
     <div class="navbar">
     <button onclick="loadContent('contentloaderpages/registerpage.php')" class="nav-link">
         <img src="../iconswhite/register.svg" alt="Register Icon">

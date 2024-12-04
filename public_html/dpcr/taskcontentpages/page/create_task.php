@@ -17,8 +17,8 @@ if (!empty($message)) {
     exit; // Stop further execution of the script
 }
 ?>
-<style > 
-    
+<style>
+
 </style>
 <h2>Create Semester Tasks</h2>
 <form id="createTaskForm">

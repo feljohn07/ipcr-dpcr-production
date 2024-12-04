@@ -438,6 +438,20 @@ function firstSignature(idnumber, semester_id) {
     xhr.onload = function() {
         if (xhr.status === 200) {
             alert(xhr.responseText); // Show the response from the server
+
+
+            // Rex send email
+            // Using the fetch API to call PHP script
+            fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                method: 'POST', // or 'POST' if you're sending data
+                body: JSON.stringify({ message: "VPAA Gived First Signature your IPCR Forms for <?php echo $taskGroup[0]['name_of_semester'] ?>", user_id: idnumber }),
+            }) 
+            .then(response => response.text())
+            .then(data => { 
+                console.log(data);
+            })
+
+
             location.reload(); // Reload the page to see the updates
         } else {
             alert("An error occurred while saving the first signature.");
@@ -502,6 +516,20 @@ function firstSignature(idnumber, semester_id) {
                 
                 // Display response from the server
                 alert(xhr.responseText); // Alert the user
+
+
+                // Rex send email
+                // Using the fetch API to call PHP script
+                fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                    method: 'POST', // or 'POST' if you're sending data
+                    body: JSON.stringify({ message: "VPAA Gived Final Signature your IPCR Forms for <?php echo $taskGroup[0]['name_of_semester'] ?>", user_id: idnumber }),
+                }) 
+                .then(response => response.text())
+                .then(data => { 
+                    console.log(data);
+                })
+                
+
                 
                 // Refresh the page after the user clicks "OK"
                 location.reload();

@@ -579,6 +579,20 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                 xhr.onload = function () {
                     if (xhr.status === 200) {
                         alert(xhr.responseText); // Show the response from the server
+
+
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: "Dean Gived First Signature your IPCR Forms for <?php echo $taskGroup[0]['name_of_semester'] ?>", user_id: idnumber }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+
+
                         location.reload(); // Reload the page to see the updates
                     } else {
                         alert("An error occurred while saving the first signature.");
@@ -612,6 +626,21 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                         // Display response from the server
                         alert(xhr.responseText); // Alert the user
 
+
+
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: "Dean Signed your IPCR Forms for <?php echo $taskGroup[0]['name_of_semester'] ?>", user_id: idnumber }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+
+
+
                         // Refresh the page after the user clicks "OK"
                         location.reload();
                     } else {
@@ -644,6 +673,19 @@ foreach ($tasks as $group_task_id => $taskGroup) {
 
                         // Display response from the server
                         alert(xhr.responseText); // Alert the user
+
+                        
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: "Dean Gived Final Signature your IPCR Forms for <?php echo $taskGroup[0]['name_of_semester'] ?>", user_id: idnumber }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+
 
                         // Refresh the page after the user clicks "OK"
                         location.reload();
@@ -951,8 +993,7 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">
-                                                <button class="rate-button"
-                                                    onclick="openRateModal('<?php echo htmlspecialchars($task['task_id']); ?>', '<?php echo htmlspecialchars($task['quality']); ?>', '<?php echo htmlspecialchars($task['efficiency']); ?>', '<?php echo htmlspecialchars($task['timeliness']); ?>')">Rate</button>
+                                            <button class="rate-button" onclick="openRateModal(`<?php echo htmlspecialchars($task['task_name']); ?>`, `<?php echo htmlspecialchars($task['description']); ?>`, `<?php echo htmlspecialchars($task['task_type']); ?>`, '<?php echo htmlspecialchars($task['idnumber']); ?>', '<?php echo htmlspecialchars($task['task_id']); ?>', '<?php echo htmlspecialchars($task['quality']); ?>', '<?php echo htmlspecialchars($task['efficiency']); ?>', '<?php echo htmlspecialchars($task['timeliness']); ?>')">Rate</button>
                                                 <button class="note-button"
                                                     onclick="sendNotePrompt('<?php echo htmlspecialchars($task['task_id']); ?>')">Send
                                                     Note</button>
@@ -1031,15 +1072,22 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                     </tr>
                 </table>
                 <input type="hidden" id="task-id-input">
+                <input type="hidden" id="task-type-input">
+                <input type="hidden" id="task-name-input">
+                <input type="hidden" id="task-description-input">
+                <input type="hidden" id="user-id-input">
                 <button onclick="submitRating()"
                     style="margin-top: 20px; padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit
                     Rating</button>
             </div>
             <script>
                 // Function to open the rate modal and store task ID and current ratings
-                function openRateModal(taskId, currentQuality, currentEfficiency, currentTimeliness) {
+                function openRateModal(task_name, task_description, task_type, idnumber, taskId, currentQuality, currentEfficiency, currentTimeliness) {
                     document.getElementById("task-id-input").value = taskId; // Store the task ID
-
+                    document.getElementById("task-type-input").value = task_type; // Store the task ID
+                    document.getElementById("task-name-input").value = task_name; // Store the task ID
+                    document.getElementById("task-description-input").value = task_description; // Store the task ID
+                    document.getElementById("user-id-input").value = idnumber; 
                     // Set input values; show '0' if the rating is zero
                     document.getElementById("quality-input").value = currentQuality; // Set quality input
                     document.getElementById("efficiency-input").value = currentEfficiency; // Set efficiency input
@@ -1069,6 +1117,10 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                     var efficiency = document.getElementById("efficiency-input").value;
                     var timeliness = document.getElementById("timeliness-input").value;
                     var taskId = document.getElementById("task-id-input").value;
+                    var taskName = document.getElementById("task-name-input").value;
+                    var taskType = document.getElementById("task-type-input").value;
+                    var taskDescription = document.getElementById("task-description-input").value;
+                    var idnumber = document.getElementById("user-id-input").value;
 
                     if (quality === "" || isNaN(quality) || parseFloat(quality) < 0 || parseFloat(quality) > 5 ||
                         efficiency === "" || isNaN(efficiency) || parseFloat(efficiency) < 0 || parseFloat(efficiency) > 5 ||
@@ -1080,19 +1132,37 @@ foreach ($tasks as $group_task_id => $taskGroup) {
                     // Save the current scroll position
                     sessionStorage.setItem('scrollPosition', window.scrollY);
 
+                    // Rex : Prepare notifaction and email message.
+                    details = '<br><br> Task Type: <br>' + taskType + '<br><br> Task Name: <br>' + taskName + '<br><br>Task Description: <br>' + taskDescription;
+                    message = 'Your IPCR Task, Id: ' + taskId + '<br>Got Rated: ' + 'Quality: ' + quality + ', Efficiency: ' + efficiency + ', Timeliness: ' + timeliness + details;
+                        
+                    
                     // Send AJAX request to store the rating
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", "../process/submit_rating.php", true); // Path to your PHP script
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onload = function () {
                         if (xhr.status === 200) {
+
+                            // Rex - sends the email to notify user.
+
+                            // Using the fetch API to call PHP script
+                            fetch('../../../feature_experiment/notify_users/includes/send_email_async.php', {
+                                method: 'POST', // or 'POST' if you're sending data
+                                body: JSON.stringify({ message: message, user_id: idnumber}),
+                            })
+                            .then(response => response.text())
+                            .then(data => { 
+                                console.log(data);
+                            })
+                            
                             alert("Rating submitted successfully!");
                             location.reload(); // Reload the page to see the updates
                         } else {
                             alert("Error submitting rating.");
                         }
                     };
-                    xhr.send("task_id=" + taskId + "&quality=" + quality + "&efficiency=" + efficiency + "&timeliness=" + timeliness);
+                    xhr.send("idnumber=" + idnumber + "&task_id=" + taskId + "&quality=" + quality + "&efficiency=" + efficiency + "&timeliness=" + timeliness + "&notification=" + message);
                 }
 
                 // Restore scroll position after the page reloads

@@ -1,8 +1,10 @@
 <?php
 $servername = "localhost"; 
-$username = "u574655838_latestone";
-$password = "Asscatipcr.com123"; 
-$dbname = "u574655838_latestone"; 
+$username = "root";
+$password = ""; 
+// $username = "localhost";
+// $password = ""; 
+$dbname = "thesis"; 
 
 
 // Create connection

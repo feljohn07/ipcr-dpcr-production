@@ -102,7 +102,7 @@ if (isset($_POST['logout'])) {
 
 <?php include '../notiftext/taskupdatenotif.php'; ?>
 
-<div class="header">DPCR Dash</div>
+<div class="header">DCPR Dashboard</div>
 <div class="navbar">
     <!-- Your navigation buttons -->
      <button onclick="loadContent('../forall/profile.php')" class="nav-link">
@@ -139,6 +139,10 @@ if (isset($_POST['logout'])) {
         Archive
     </button>
     <button onclick="window.open('taskcontentpages/page/reports.php', '_blank')" class="nav-link">
+        <img src="../iconswhite/notification.svg" alt="Reports Icon">
+        Reports
+    </button>
+    <button onclick="window.open('../feature_experiment/reports/college_general_performance_report.php', '_blank')" class="nav-link">
         <img src="../iconswhite/notification.svg" alt="Reports Icon">
         Reports
     </button>

@@ -22,15 +22,29 @@ $semester_stmt->close();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task_id']) && isset($_POST['action'])) {
     $task_id = $_POST['task_id'];
     $action = $_POST['action'];
+    
+    // Fetch the office_head_id and semester_name for the task
+    $task_stmt = $conn->prepare("SELECT office_head_id, semester_name, college FROM semester_tasks WHERE semester_id = ?");
+    $task_stmt->bind_param("i", $task_id);
+    $task_stmt->execute();
+    $task_stmt->bind_result($office_head_id, $semester_name, $college);
+    $task_stmt->fetch();
+    $task_stmt->close();
 
     if ($action === 'approve') {
         $presidentapproval = 1; // Approve
         $press_first_created_at = date('Y-m-d H:i:s', strtotime('+8 hours')); // Current time in Philippines timezone
         $status = 1; // Status for notifications
+
+        $message = "President Gived Intitial Approval for Semester Task : ";
+
     } elseif ($action === 'pending') {
         $presidentapproval = null; // Store NULL for disapproval
         $press_first_created_at = null; // Set to NULL
         $status = null; // Status for notifications
+
+        $message = "President Revoked Intitial Approval for Semester Task : ";
+
     } elseif ($action === 'approve_final') {
         $final_approval = 1; // Approve final
         $press_final_created_at = date('Y-m-d H:i:s', strtotime('+8 hours')); // Current time in Philippines timezone
@@ -38,7 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task_id']) && isset($
         $update_stmt->bind_param("ssi", $final_approval, $press_final_created_at, $task_id);
         $update_stmt->execute();
         $update_stmt->close();
-        echo json_encode(['status' => 'success']);
+
+        $message = "President Gived Final Approval for Semester Task : ";
+
+        echo json_encode([
+            'status' => 'success',
+            'office_head_id' => $office_head_id,
+            'message' => $message . "\"" . $semester_name . "\"",
+        ]);
         exit();
     } elseif ($action === 'final_pending') {
         $final_approval = 0; // Set final to pending
@@ -47,7 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task_id']) && isset($
         $update_stmt->bind_param("ssi", $final_approval, $press_final_created_at, $task_id);
         $update_stmt->execute();
         $update_stmt->close();
-        echo json_encode(['status' => 'success']);
+
+        $message = "President Revoked Final Approval for Semester Task : ";
+
+        echo json_encode([
+            'status' => 'success',
+            'office_head_id' => $office_head_id,
+            'message' => $message . "\"" . $semester_name . "\"",
+        ]);
         exit();
     }
 
@@ -57,13 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task_id']) && isset($
     $update_stmt->execute();
     $update_stmt->close();
 
-    // Fetch the office_head_id and semester_name for the task
-    $task_stmt = $conn->prepare("SELECT office_head_id, semester_name, college FROM semester_tasks WHERE semester_id = ?");
-    $task_stmt->bind_param("i", $task_id);
-    $task_stmt->execute();
-    $task_stmt->bind_result($office_head_id, $semester_name, $college);
-    $task_stmt->fetch();
-    $task_stmt->close();
+    // // Fetch the office_head_id and semester_name for the task
+    // $task_stmt = $conn->prepare("SELECT office_head_id, semester_name, college FROM semester_tasks WHERE semester_id = ?");
+    // $task_stmt->bind_param("i", $task_id);
+    // $task_stmt->execute();
+    // $task_stmt->bind_result($office_head_id, $semester_name, $college);
+    // $task_stmt->fetch();
+    // $task_stmt->close();
 
     // Insert a record into the notifications table
     $notification_stmt = $conn->prepare("INSERT INTO presapproval (task_id, semester_name, officehead_id_number, college, status) VALUES (?, ?, ?, ?, ?)");
@@ -71,7 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task_id']) && isset($
     $notification_stmt->execute();
     $notification_stmt->close();
     
-    echo json_encode(['status' => 'success']);
+    echo json_encode([
+        'status' => 'success notification', 
+        'office_head_id' => $office_head_id,
+        'message' => $message . "\"" . $semester_name . "\"",
+    ]);
     exit();
 }
 
@@ -351,6 +383,22 @@ function closeModal() {
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     showNotification('Task marked as pending successfully!', false , true); // Set isPending to true
+
+                    console.log('pending ' + xhr.responseText);
+                    response = JSON.parse(xhr.responseText);
+                    console.log(response.message);
+
+                    // Rex send email
+                    // Using the fetch API to call PHP script
+                    fetch('../feature_experiment/notify_users/includes/send_email_async.php', {
+                        method: 'POST', // or 'POST' if you're sending data
+                        body: JSON.stringify({ message: response.message, user_id: response.office_head_id }),
+                    }) 
+                    .then(response => response.text())
+                    .then(data => { 
+                        console.log(data);
+                    })
+
                     var taskRow = document.getElementById('task-row-' + taskId);
                     var statusCell = taskRow.querySelector('td:nth-child(5)'); // Adjust this based on your table structure
 
@@ -376,6 +424,22 @@ function closeModal() {
                 xhr.onload = function() {
                     if (xhr.status === 200) {
                         showNotification('Task signed successfully!', true);
+
+                        console.log('submit ' + xhr.responseText);
+                        response = JSON.parse(xhr.responseText);
+                        console.log(response.message);
+
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: response.message, user_id: response.office_head_id }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+
                         var taskId = formData.get('task_id');
                         var taskRow = document.getElementById('task-row-' + taskId);
                         var statusCell = taskRow.querySelector('td:nth-child(5)'); // Adjust this based on your table structure
@@ -399,6 +463,22 @@ function closeModal() {
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
+
+                        console.log('approveFinal ' + xhr.responseText);
+                        response = JSON.parse(xhr.responseText);
+                        console.log(response.message);
+
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: response.message, user_id: response.office_head_id }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+
                         // Update the task row status for final approval
                         var taskRow = document.getElementById('task-row-' + taskId);
                         var statusCell = taskRow.querySelector('td:nth-child(6)'); // Adjust index if necessary
@@ -426,6 +506,22 @@ function closeModal() {
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
+
+                        console.log('setFinalPending ' + xhr.responseText);
+                        response = JSON.parse(xhr.responseText);
+                        console.log(response.message);
+
+                        // Rex send email
+                        // Using the fetch API to call PHP script
+                        fetch('../feature_experiment/notify_users/includes/send_email_async.php', {
+                            method: 'POST', // or 'POST' if you're sending data
+                            body: JSON.stringify({ message: response.message, user_id: response.office_head_id }),
+                        }) 
+                        .then(response => response.text())
+                        .then(data => { 
+                            console.log(data);
+                        })
+                        
                         // Update the task row status for final pending
                         var taskRow = document.getElementById('task-row-' + taskId);
                         var statusCell = taskRow.querySelector('td:nth-child(6)'); // Adjust index if necessary

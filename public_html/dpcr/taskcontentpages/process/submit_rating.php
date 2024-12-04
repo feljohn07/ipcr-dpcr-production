@@ -1,13 +1,18 @@
 <?php
 session_start();
 include '../../../dbconnections/config.php'; // Include your database connection
+include '../../../feature_experiment/notify_users/includes/notify_user_for_changes.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Capture the task ID and ratings from the POST request
     $task_id = isset($_POST['task_id']) ? $_POST['task_id'] : null;
+    $idnumber = isset($_POST['idnumber']) ? $_POST['idnumber'] : null;
     $quality = isset($_POST['quality']) ? $_POST['quality'] : null;
     $efficiency = isset($_POST['efficiency']) ? $_POST['efficiency'] : null;
     $timeliness = isset($_POST['timeliness']) ? $_POST['timeliness'] : null;
+    $notification = isset($_POST['notification']) ? $_POST['notification'] : null;
+
+    notify_user_for_changes([$idnumber], $notification);
 
     // Validate and sanitize the inputs
     if ($task_id && is_numeric($quality) && is_numeric($efficiency) && is_numeric($timeliness)) {

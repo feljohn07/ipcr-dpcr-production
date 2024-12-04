@@ -1,0 +1,47 @@
+# Composer
+/vendor/
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# IDE and Editor specific
+/.idea/
+/.vscode/
+/*.sublime-workspace
+/*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.cache
+*.tmp
+/storage/*.log
+/storage/*.cache
+/storage/*.tmp
+
+# Build directories
+/build/
+dist/
+
+# Composer lock file, only if not needed for deployment
+composer.lock
+
+# Exclude any backup or history files
+**/.history
+
+# Exclude environment and sensitive files
+.env
+.env.local
+.env.*.local
+
+# Ignore the upload directory (if applicable)
+uploads/
+
+# Ignore configuration files (you might want to commit your configuration files in some cases)
+config/*.yml
+config/*.yaml
+config/*.ini
